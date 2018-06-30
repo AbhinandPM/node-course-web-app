@@ -2,6 +2,8 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
+
 let app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -42,12 +44,13 @@ app.get('/about', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-   console.log('app listering in port 3000');
-});
-
 app.get('/bad', (req, res) => {
     res.send({
         errorMessage: 'Unable to handle request..'
     })
 });
+
+app.listen(port, () => {
+   console.log(`app listering in port ${port}`);
+});
+
